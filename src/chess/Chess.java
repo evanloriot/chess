@@ -194,8 +194,8 @@ public class Chess {
 		board[getColumn("a")][getRow("a8")] = new Rook("Black");
 		board[getColumn("b")][getRow("b8")] = new Knight("Black");
 		board[getColumn("c")][getRow("c8")] = new Bishop("Black");
-		board[getColumn("e")][getRow("e8")] = new Queen("Black");
-		board[getColumn("d")][getRow("d8")] = new King("Black");
+		board[getColumn("d")][getRow("d8")] = new Queen("Black");
+		board[getColumn("e")][getRow("e8")] = new King("Black");
 		board[getColumn("f")][getRow("f8")] = new Bishop("Black");
 		board[getColumn("g")][getRow("g8")] = new Knight("Black");
 		board[getColumn("h")][getRow("h8")] = new Rook("Black");
@@ -205,8 +205,8 @@ public class Chess {
 		board[getColumn("a")][getRow("a1")] = new Rook("White");
 		board[getColumn("b")][getRow("b1")] = new Knight("White");
 		board[getColumn("c")][getRow("c1")] = new Bishop("White");
-		board[getColumn("e")][getRow("e1")] = new Queen("White");
-		board[getColumn("d")][getRow("d1")] = new King("White");
+		board[getColumn("d")][getRow("d1")] = new Queen("White");
+		board[getColumn("e")][getRow("e1")] = new King("White");
 		board[getColumn("f")][getRow("f1")] = new Bishop("White");
 		board[getColumn("g")][getRow("g1")] = new Knight("White");
 		board[getColumn("h")][getRow("h1")] = new Rook("White");

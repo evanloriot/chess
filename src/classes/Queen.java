@@ -9,7 +9,6 @@ public class Queen extends Piece {
 	public String toString() {
 		return super.toString() + "Q";
 	}
-	//TODO
 	public boolean isLegal(Piece[][] board, String command, String color) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {

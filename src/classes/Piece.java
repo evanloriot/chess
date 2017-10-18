@@ -4,7 +4,7 @@ import chess.Chess;
 
 public class Piece {
 	public String color;
-	public boolean hasMoved;
+	public boolean hasMoved = false;
 	public Piece(String color) {
 		this.color = color;
 	}
@@ -24,6 +24,7 @@ public class Piece {
 			Chess.winner = board[Chess.getColumn(pos)][Chess.getRow(pos)].color + " wins";
 		}
 		board[Chess.getColumn(dest)][Chess.getRow(dest)] = board[Chess.getColumn(pos)][Chess.getRow(pos)];
+		board[Chess.getColumn(dest)][Chess.getRow(dest)].hasMoved = true;
 		board[Chess.getColumn(pos)][Chess.getRow(pos)] = null;
 	}
 }
