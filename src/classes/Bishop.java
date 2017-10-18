@@ -13,7 +13,4 @@ public class Bishop extends Piece {
 	public boolean isLegal(Piece[][] board, String command, String color) {
 		return false;
 	}
-	public void move(Piece[][] board, String move) {
-		
-	}
 }
