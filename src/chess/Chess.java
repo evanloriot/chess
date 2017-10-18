@@ -32,7 +32,9 @@ public class Chess {
 			printBoard();
 			boolean valid = false;
 			while(!valid) {
+				System.out.print("White's move: ");
 				String white = sc.nextLine();
+				System.out.println("");
 				valid = whiteTurn(white);	
 			}
 			if(resign) {
@@ -51,8 +53,11 @@ public class Chess {
 				break;
 			}
 			printBoard();
+			valid = false;
 			while(!valid) {
+				System.out.print("Black's move: ");
 				String black = sc.nextLine();
+				System.out.println("");
 				valid = blackTurn(black);	
 			}
 			if(resign) {
@@ -71,13 +76,18 @@ public class Chess {
 				break;
 			}
 		}
-		
 	}
 	
 	public static boolean turn(String move, String color) {
 		if(move.equals("resign")) {
 			resign = true;
 			return true;
+		}
+		else if(move.equals("draw")) {
+			if(drawInitiated) {
+				draw = true;
+				return true;
+			}
 		}
 		String pos = move.substring(0,2);
 		Piece position = board[getColumn(pos)][getRow(pos)];
