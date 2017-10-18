@@ -10,6 +10,7 @@ public class Knight extends Piece {
 		return super.toString() + "N";
 	}
 	public boolean isLegal(Piece[][] board, String command, String color) {
+		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
 			System.out.println("Illegal move, try again\n");
 			return false;

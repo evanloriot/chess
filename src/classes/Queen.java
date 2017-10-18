@@ -11,6 +11,7 @@ public class Queen extends Piece {
 	}
 	//TODO
 	public boolean isLegal(Piece[][] board, String command, String color) {
+		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
 			System.out.println("Illegal move, try again\n");
 			return false;

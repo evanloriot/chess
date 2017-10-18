@@ -19,6 +19,10 @@ public class Piece {
 	public void move(Piece[][] board, String move) {
 		String pos = move.substring(0,2);
 		String dest = move.substring(3,5);
+		if(board[Chess.getColumn(dest)][Chess.getRow(dest)] instanceof King) {
+			Chess.checkmate = true;
+			Chess.winner = board[Chess.getColumn(pos)][Chess.getRow(pos)].color + " wins";
+		}
 		board[Chess.getColumn(dest)][Chess.getRow(dest)] = board[Chess.getColumn(pos)][Chess.getRow(pos)];
 		board[Chess.getColumn(pos)][Chess.getRow(pos)] = null;
 	}
