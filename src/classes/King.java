@@ -9,7 +9,6 @@ public class King extends Piece {
 	public String toString() {
 		return super.toString() + "K";
 	}
-	//TODO
 	public boolean isLegal(Piece[][] board, String command, String color) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
@@ -19,8 +18,6 @@ public class King extends Piece {
 		String position = command.substring(0,2);
 		String destination = command.substring(3,5);
 		boolean castling = false;
-		
-		//add castling here
 		if(position.equals("e1") && destination.equals("g1")) {
 			if(!hasMoved && board[Chess.getColumn("h1")][Chess.getRow("h1")] != null && !board[Chess.getColumn("h1")][Chess.getRow("h1")].hasMoved) {
 				if(board[Chess.getColumn("f1")][Chess.getRow("f1")] == null && board[Chess.getColumn("g1")][Chess.getRow("g1")] == null) {

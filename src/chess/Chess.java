@@ -199,9 +199,9 @@ public class Chess {
 		board[getColumn("f")][getRow("f8")] = new Bishop("Black");
 		board[getColumn("g")][getRow("g8")] = new Knight("Black");
 		board[getColumn("h")][getRow("h8")] = new Rook("Black");
-//		for(char i = 'a'; i < 'i'; i++) {
-//			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black");
-//		}
+		for(char i = 'a'; i < 'i'; i++) {
+			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black");
+		}
 		board[getColumn("a")][getRow("a1")] = new Rook("White");
 		board[getColumn("b")][getRow("b1")] = new Knight("White");
 		board[getColumn("c")][getRow("c1")] = new Bishop("White");
@@ -210,9 +210,9 @@ public class Chess {
 		board[getColumn("f")][getRow("f1")] = new Bishop("White");
 		board[getColumn("g")][getRow("g1")] = new Knight("White");
 		board[getColumn("h")][getRow("h1")] = new Rook("White");
-//		for(char i = 'a'; i < 'i'; i++) {
-//			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White");
-//		}
+		for(char i = 'a'; i < 'i'; i++) {
+			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White");
+		}
 	}
 	
 	public static int getColumn(String position) {
