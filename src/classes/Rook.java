@@ -9,7 +9,6 @@ public class Rook extends Piece {
 	public String toString() {
 		return super.toString() + "R";
 	}
-	//TODO
 	public boolean isLegal(Piece[][] board, String command, String color) {
 		if(!color.equals(this.color)) {
 			System.out.println("Illegal move, try again\n");
@@ -26,6 +25,10 @@ public class Rook extends Piece {
 		int posRow = Integer.parseInt(position.substring(1, 2));
 		char destCol = destination.charAt(0);
 		int destRow = Integer.parseInt(destination.substring(1, 2));
+		if(posCol == destCol && posRow == destRow) {
+			System.out.println("Illegal move, try again\n");
+			return false;
+		}
 		if(posRow == destRow) {
 			legal = true;
 		}
