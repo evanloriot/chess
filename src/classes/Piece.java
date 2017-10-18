@@ -1,7 +1,8 @@
 package classes;
 
 public class Piece {
-	String color;
+	public String color;
+	public boolean hasMoved;
 	public Piece(String color) {
 		this.color = color;
 	}

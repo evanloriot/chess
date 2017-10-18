@@ -7,4 +7,11 @@ public class King extends Piece {
 	public String toString() {
 		return super.toString() + "K";
 	}
+	//TODO
+	public boolean isLegal(Piece[][] board, String command, String color) {
+		return false;
+	}
+	public void move(Piece[][] board, String move) {
+		
+	}
 }

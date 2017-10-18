@@ -14,6 +14,9 @@ public class Chess {
 	public static Piece[][] board;
 	public static boolean check;
 	public static boolean checkmate;
+	public static boolean drawInitiated;
+	public static boolean draw;
+	public static boolean resign;
 	public static String winner;
 	
 	public static void main(String[] args) {
@@ -21,37 +24,134 @@ public class Chess {
 		initializeGame();
 		check = false;
 		checkmate = false;
+		draw = false;
+		drawInitiated = false;
+		resign = false;
 		Scanner sc = new Scanner(System.in);
 		while(!checkmate) {
 			printBoard();
-			String white = sc.nextLine();
-			whiteTurn(white);
-			if(check) {
-				System.out.println("Check!\n");
+			boolean valid = false;
+			while(!valid) {
+				String white = sc.nextLine();
+				valid = whiteTurn(white);	
+			}
+			if(resign) {
+				winner = "Black wins";
+				System.out.println(winner);
+				break;
+			}
+			else if(check) {
+				System.out.println("Check\n");
 			}
 			else if(checkmate) {
 				System.out.println(winner);
 				break;
 			}
-			String black = sc.nextLine();
-			blackTurn(black);
-			if(check) {
-				System.out.println("Check!\n");
+			else if(draw) {
+				break;
+			}
+			printBoard();
+			while(!valid) {
+				String black = sc.nextLine();
+				valid = blackTurn(black);	
+			}
+			if(resign) {
+				winner = "White wins";
+				System.out.println(winner);
+				break;
+			}
+			else if(check) {
+				System.out.println("Check\n");
 			}
 			else if(checkmate) {
 				System.out.println(winner);
+				break;
+			}
+			else if(draw) {
 				break;
 			}
 		}
 		
 	}
 	
-	public static void whiteTurn(String move) {
-		
+	public static boolean turn(String move, String color) {
+		if(move.equals("resign")) {
+			resign = true;
+			return true;
+		}
+		String pos = move.substring(0,2);
+		Piece position = board[getColumn(pos)][getRow(pos)];
+		if(position instanceof Rook) {
+			Rook r = (Rook) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if(position instanceof Knight) {
+			Knight r = (Knight) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if(position instanceof Bishop) {
+			Bishop r = (Bishop) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if(position instanceof Queen) {
+			Queen r = (Queen) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if(position instanceof King) {
+			King r = (King) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if(position instanceof Pawn) {
+			Pawn r = (Pawn) position;
+			if(r.isLegal(board, move, color)) {
+				r.move(board, move);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 	
-	public static void blackTurn(String move) {
-		
+	public static boolean whiteTurn(String move) {
+		return turn(move, "White");
+	}
+	
+	public static boolean blackTurn(String move) {
+		return turn(move, "Black");
 	}
 	
 	public static void printBoard() {
