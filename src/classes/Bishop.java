@@ -9,16 +9,16 @@ public class Bishop extends Piece {
 	public String toString() {
 		return super.toString() + "B";
 	}
-	public boolean isLegal(Piece[][] board, String command, String color) {
+	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		String position = command.substring(0,2);
 		String destination = command.substring(3,5);
 		if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		boolean legal = false;
@@ -27,14 +27,14 @@ public class Bishop extends Piece {
 		char destCol = destination.charAt(0);
 		int destRow = Integer.parseInt(destination.substring(1, 2));
 		if(posCol == destCol && posRow == destRow) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		if(Math.abs(posCol - destCol) == Math.abs(posRow - destRow)) {
 			legal = true;
 		}
 		else {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		if(legal) {
@@ -90,7 +90,7 @@ public class Bishop extends Piece {
 			return true;
 		}
 		else {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 	}

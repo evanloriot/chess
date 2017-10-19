@@ -3,16 +3,17 @@ package classes;
 import chess.Chess;
 
 public class King extends Piece {
+	public String position;
 	public King(String color) {
 		super(color);
 	}
 	public String toString() {
 		return super.toString() + "K";
 	}
-	public boolean isLegal(Piece[][] board, String command, String color) {
+	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		String position = command.substring(0,2);
@@ -25,7 +26,7 @@ public class King extends Piece {
 				}
 			}
 			else {
-				System.out.println("Illegal move, try again\n");
+				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
 		}
@@ -36,7 +37,7 @@ public class King extends Piece {
 				}
 			}
 			else {
-				System.out.println("Illegal move, try again\n");
+				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
 		}
@@ -47,7 +48,7 @@ public class King extends Piece {
 				}
 			}
 			else {
-				System.out.println("Illegal move, try again\n");
+				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
 		}
@@ -58,12 +59,12 @@ public class King extends Piece {
 				}
 			}
 			else {
-				System.out.println("Illegal move, try again\n");
+				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
 		}
 		else if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		char posCol = position.charAt(0);
@@ -71,7 +72,7 @@ public class King extends Piece {
 		char destCol = destination.charAt(0);
 		int destRow = Integer.parseInt(destination.substring(1, 2));
 		if(posCol == destCol && posRow == destRow) {
-			System.out.println("Illegal move, try again\n");
+			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
 		if(castling) {
@@ -85,7 +86,7 @@ public class King extends Piece {
 				return true;
 			}
 			else {
-				System.out.println("Illegal move, try again\n");
+				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
 		}
@@ -106,5 +107,6 @@ public class King extends Piece {
 		else if(position.equals("e8") && destination.equals("c8")) {
 			super.move(board, "a8 d8");
 		}
+		this.position = destination;
 	}
 }

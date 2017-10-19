@@ -18,6 +18,8 @@ public class Chess {
 	public static boolean draw;
 	public static boolean resign;
 	public static String winner;
+	public static King blackKing;
+	public static King whiteKing;
 	
 	public static void main(String[] args) {
 		board = new Piece[8][8];
@@ -93,7 +95,7 @@ public class Chess {
 		Piece position = board[getColumn(pos)][getRow(pos)];
 		if(position instanceof Rook) {
 			Rook r = (Rook) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -103,7 +105,7 @@ public class Chess {
 		}
 		else if(position instanceof Knight) {
 			Knight r = (Knight) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -113,7 +115,7 @@ public class Chess {
 		}
 		else if(position instanceof Bishop) {
 			Bishop r = (Bishop) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -123,7 +125,7 @@ public class Chess {
 		}
 		else if(position instanceof Queen) {
 			Queen r = (Queen) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -133,7 +135,7 @@ public class Chess {
 		}
 		else if(position instanceof King) {
 			King r = (King) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -143,7 +145,7 @@ public class Chess {
 		}
 		else if(position instanceof Pawn) {
 			Pawn r = (Pawn) position;
-			if(r.isLegal(board, move, color)) {
+			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
 				return true;
 			}
@@ -196,6 +198,8 @@ public class Chess {
 		board[getColumn("c")][getRow("c8")] = new Bishop("Black");
 		board[getColumn("d")][getRow("d8")] = new Queen("Black");
 		board[getColumn("e")][getRow("e8")] = new King("Black");
+		blackKing = (King) board[getColumn("e")][getRow("e8")];
+		blackKing.position = "e8";
 		board[getColumn("f")][getRow("f8")] = new Bishop("Black");
 		board[getColumn("g")][getRow("g8")] = new Knight("Black");
 		board[getColumn("h")][getRow("h8")] = new Rook("Black");
@@ -207,6 +211,8 @@ public class Chess {
 		board[getColumn("c")][getRow("c1")] = new Bishop("White");
 		board[getColumn("d")][getRow("d1")] = new Queen("White");
 		board[getColumn("e")][getRow("e1")] = new King("White");
+		whiteKing = (King) board[getColumn("e")][getRow("e1")];
+		whiteKing.position = "e1";
 		board[getColumn("f")][getRow("f1")] = new Bishop("White");
 		board[getColumn("g")][getRow("g1")] = new Knight("White");
 		board[getColumn("h")][getRow("h1")] = new Rook("White");
