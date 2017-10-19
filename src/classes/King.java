@@ -3,9 +3,8 @@ package classes;
 import chess.Chess;
 
 public class King extends Piece {
-	public String position;
-	public King(String color) {
-		super(color);
+	public King(String color, String position) {
+		super(color, position);
 	}
 	public String toString() {
 		return super.toString() + "K";
@@ -107,6 +106,5 @@ public class King extends Piece {
 		else if(position.equals("e8") && destination.equals("c8")) {
 			super.move(board, "a8 d8");
 		}
-		this.position = destination;
 	}
 }

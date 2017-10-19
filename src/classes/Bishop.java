@@ -3,8 +3,8 @@ package classes;
 import chess.Chess;
 
 public class Bishop extends Piece {
-	public Bishop(String color) {
-		super(color);
+	public Bishop(String color, String position) {
+		super(color, position);
 	}
 	public String toString() {
 		return super.toString() + "B";

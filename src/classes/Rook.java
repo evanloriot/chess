@@ -3,8 +3,8 @@ package classes;
 import chess.Chess;
 
 public class Rook extends Piece {
-	public Rook(String color) {
-		super(color);
+	public Rook(String color, String position) {
+		super(color, position);
 	}
 	public String toString() {
 		return super.toString() + "R";

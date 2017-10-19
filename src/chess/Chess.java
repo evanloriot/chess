@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Bishop;
@@ -97,6 +98,10 @@ public class Chess {
 			Rook r = (Rook) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -107,6 +112,10 @@ public class Chess {
 			Knight r = (Knight) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -117,6 +126,10 @@ public class Chess {
 			Bishop r = (Bishop) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -127,6 +140,10 @@ public class Chess {
 			Queen r = (Queen) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -137,6 +154,10 @@ public class Chess {
 			King r = (King) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -147,6 +168,10 @@ public class Chess {
 			Pawn r = (Pawn) position;
 			if(r.isLegal(board, move, color, true)) {
 				r.move(board, move);
+				String oppColor = color.equals("White") ? "Black" : "White";
+				if(isInCheck(oppColor)) {
+					check = true;
+				}
 				return true;
 			}
 			else {
@@ -164,6 +189,70 @@ public class Chess {
 	
 	public static boolean blackTurn(String move) {
 		return turn(move, "Black");
+	}
+	
+	public static ArrayList<Piece> getPieces(String color){
+		ArrayList<Piece> output = new ArrayList<Piece>();
+		for(int i = 0; i < board.length; i++) {
+			for(int j = 0; j < board[i].length; j++) {
+				if(board[i][j] != null && board[i][j].color.equals(color)) {
+					output.add(board[i][j]);
+				}
+			}
+		}
+		return output;
+	}
+	
+	public static boolean isInCheck(String color) {
+		String oppColor = color.equals("White") ? "Black" : "White";
+		ArrayList<Piece> white = getPieces(oppColor);
+		King k = color.equals("White") ? whiteKing : blackKing;
+		for(int i = 0; i < white.size(); i++) {
+			Piece p = white.get(i);
+			if(p instanceof Rook) {
+				Rook r = (Rook) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+			else if(p instanceof Knight) {
+				Knight r = (Knight) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+			else if(p instanceof King) {
+				King r = (King) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+			else if(p instanceof Bishop) {
+				Bishop r = (Bishop) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+			else if(p instanceof Queen) {
+				Queen r = (Queen) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+			else if(p instanceof Pawn) {
+				Pawn r = (Pawn) p;
+				String winMove = r.position + " " + k.position;
+				if(r.isLegal(board, winMove, oppColor, false)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public static void printBoard() {
@@ -193,31 +282,29 @@ public class Chess {
 	}
 	
 	public static void initializeGame() {
-		board[getColumn("a")][getRow("a8")] = new Rook("Black");
-		board[getColumn("b")][getRow("b8")] = new Knight("Black");
-		board[getColumn("c")][getRow("c8")] = new Bishop("Black");
-		board[getColumn("d")][getRow("d8")] = new Queen("Black");
-		board[getColumn("e")][getRow("e8")] = new King("Black");
+		board[getColumn("a")][getRow("a8")] = new Rook("Black", "a8");
+		board[getColumn("b")][getRow("b8")] = new Knight("Black", "b8");
+		board[getColumn("c")][getRow("c8")] = new Bishop("Black", "c8");
+		board[getColumn("d")][getRow("d8")] = new Queen("Black", "d8");
+		board[getColumn("e")][getRow("e8")] = new King("Black", "e8");
 		blackKing = (King) board[getColumn("e")][getRow("e8")];
-		blackKing.position = "e8";
-		board[getColumn("f")][getRow("f8")] = new Bishop("Black");
-		board[getColumn("g")][getRow("g8")] = new Knight("Black");
-		board[getColumn("h")][getRow("h8")] = new Rook("Black");
+		board[getColumn("f")][getRow("f8")] = new Bishop("Black", "f8");
+		board[getColumn("g")][getRow("g8")] = new Knight("Black", "g8");
+		board[getColumn("h")][getRow("h8")] = new Rook("Black", "h8");
 		for(char i = 'a'; i < 'i'; i++) {
-			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black");
+			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black", i + "7");
 		}
-		board[getColumn("a")][getRow("a1")] = new Rook("White");
-		board[getColumn("b")][getRow("b1")] = new Knight("White");
-		board[getColumn("c")][getRow("c1")] = new Bishop("White");
-		board[getColumn("d")][getRow("d1")] = new Queen("White");
-		board[getColumn("e")][getRow("e1")] = new King("White");
+		board[getColumn("a")][getRow("a1")] = new Rook("White", "a1");
+		board[getColumn("b")][getRow("b1")] = new Knight("White", "b1");
+		board[getColumn("c")][getRow("c1")] = new Bishop("White", "c1");
+		board[getColumn("d")][getRow("d1")] = new Queen("White", "d1");
+		board[getColumn("e")][getRow("e1")] = new King("White", "e1");
 		whiteKing = (King) board[getColumn("e")][getRow("e1")];
-		whiteKing.position = "e1";
-		board[getColumn("f")][getRow("f1")] = new Bishop("White");
-		board[getColumn("g")][getRow("g1")] = new Knight("White");
-		board[getColumn("h")][getRow("h1")] = new Rook("White");
+		board[getColumn("f")][getRow("f1")] = new Bishop("White", "f1");
+		board[getColumn("g")][getRow("g1")] = new Knight("White", "g1");
+		board[getColumn("h")][getRow("h1")] = new Rook("White", "h1");
 		for(char i = 'a'; i < 'i'; i++) {
-			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White");
+			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White", i + "2");
 		}
 	}
 	

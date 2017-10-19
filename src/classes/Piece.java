@@ -4,9 +4,11 @@ import chess.Chess;
 
 public class Piece {
 	public String color;
+	public String position;
 	public boolean hasMoved = false;
-	public Piece(String color) {
+	public Piece(String color, String position) {
 		this.color = color;
+		this.position = position;
 	}
 	public String toString() {
 		if(color.equals("Black")) {
@@ -26,5 +28,6 @@ public class Piece {
 		board[Chess.getColumn(dest)][Chess.getRow(dest)] = board[Chess.getColumn(pos)][Chess.getRow(pos)];
 		board[Chess.getColumn(dest)][Chess.getRow(dest)].hasMoved = true;
 		board[Chess.getColumn(pos)][Chess.getRow(pos)] = null;
+		board[Chess.getColumn(dest)][Chess.getRow(dest)].position = dest;
 	}
 }
