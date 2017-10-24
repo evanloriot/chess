@@ -20,8 +20,14 @@ public class Pawn extends Piece {
 		}
 		String position = command.substring(0,2);
 		String destination = command.substring(3,5);
-		if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
-			if(canPrint) System.out.println("Illegal move, try again\n");
+		try{
+			if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
+				if(canPrint) System.out.println("Illegal move, try again\n");
+				return false;
+			}
+		}
+		catch(Exception e){
+			System.out.println("Bad Input\n");
 			return false;
 		}
 		boolean legal = false;
@@ -32,7 +38,7 @@ public class Pawn extends Piece {
 		if(posCol == destCol && posRow == destRow) {
 			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
-		}
+		}		
 		if(!hasMoved && destCol == posCol && Math.abs(destRow - posRow) == 2) {
 			legal = true;
 			Piece p1 = posCol > 'a' ? board[Chess.getColumn("" + (char)(destCol - 1) + destRow)][Chess.getRow(destination)] : null;
