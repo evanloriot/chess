@@ -98,111 +98,116 @@ public class Chess {
 				return true;
 			}
 		}
-		String pos = move.substring(0,2);
-		Piece position = board[getColumn(pos)][getRow(pos)];
-		if(position instanceof Rook) {
-			Rook r = (Rook) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
+		try {
+			String pos = move.substring(0,2);
+			Piece position = board[getColumn(pos)][getRow(pos)];
+			if(position instanceof Rook) {
+				Rook r = (Rook) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
 				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
+				else {
+					return false;
 				}
-				return true;
+			}
+			else if(position instanceof Knight) {
+				Knight r = (Knight) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Bishop) {
+				Bishop r = (Bishop) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Queen) {
+				Queen r = (Queen) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof King) {
+				King r = (King) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Pawn) {
+				Pawn r = (Pawn) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			else {
 				return false;
 			}
-		}
-		else if(position instanceof Knight) {
-			Knight r = (Knight) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Bishop) {
-			Bishop r = (Bishop) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Queen) {
-			Queen r = (Queen) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof King) {
-			King r = (King) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Pawn) {
-			Pawn r = (Pawn) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
+		} catch (Exception e) {
+			System.out.println("Bad Input\n");
 			return false;
 		}
 	}
