@@ -70,16 +70,22 @@ public class Chess {
 				valid = blackTurn(black);	
 			}
 			if(resign) {
-				winner = "White wins";
+				winner = "Black wins";
+				System.out.println(winner);
+				break;
+			}
+			else if(checkmate) {
+				if(isInCheckmate("White")) {
+					winner = "Black wins";
+				}
+				else {
+					winner = "White wins";
+				}
 				System.out.println(winner);
 				break;
 			}
 			else if(check) {
 				System.out.println("Check\n");
-			}
-			else if(checkmate) {
-				System.out.println(winner);
-				break;
 			}
 			else if(draw) {
 				break;
@@ -293,7 +299,7 @@ public class Chess {
 			Piece p = pieces.get(i);
 			if(p instanceof Rook) {
 				Rook x = (Rook) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -310,7 +316,7 @@ public class Chess {
 			}
 			else if(p instanceof Knight) {
 				Knight x = (Knight) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -327,7 +333,7 @@ public class Chess {
 			}
 			else if(p instanceof Bishop) {
 				Bishop x = (Bishop) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -344,7 +350,7 @@ public class Chess {
 			}
 			else if(p instanceof Queen) {
 				Queen x = (Queen) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -361,7 +367,7 @@ public class Chess {
 			}
 			else if(p instanceof King) {
 				King x = (King) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -378,7 +384,7 @@ public class Chess {
 			}
 			else if(p instanceof Pawn) {
 				Pawn x = (Pawn) p;
-				for(char col = 'a'; i <= 'h'; i++) {
+				for(char col = 'a'; col <= 'h'; col++) {
 					for(int row = 1; row <= 8; row++) {
 						String move = p.position + " " + col + row;
 						if(x.isLegal(board, move, color, false)) {
@@ -476,11 +482,6 @@ public class Chess {
 		for(char i = 'a'; i < 'i'; i++) {
 			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White", i + "2");
 		}
-//		board[getColumn("e")][getRow("e2")] = new Queen("Black", "e2");
-//		board[getColumn("f")][getRow("f3")] = new King("Black", "f3");
-//		board[getColumn("d")][getRow("d1")] = new King("White", "d1");
-//		blackKing = (King) board[getColumn("f")][getRow("f3")];
-//		whiteKing = (King) board[getColumn("d")][getRow("d1")];
 	}
 	
 	public static int getColumn(String position) {
