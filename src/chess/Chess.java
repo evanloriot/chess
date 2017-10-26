@@ -11,6 +11,14 @@ import classes.Piece;
 import classes.Queen;
 import classes.Rook;
 
+/**
+ * The chess class is runs the main loop for the game
+ * and does the book keeping for who's turn it is, 
+ * where each of the pieces are, prints out the board when
+ * needed and whether the king is in check or checkmate.  
+ * @author Evan Loriot
+ * @author Joseph Klaszky
+ */
 public class Chess {
 	public static Piece[][] board;
 	public static boolean check;
@@ -95,6 +103,10 @@ public class Chess {
 		}
 	}
 	
+	/**
+	 * This method ensures you the user can only perform EnPassant when it's legal.
+	 * @param color used so that only one color's flags are flipped
+	 */
 	public static void clearEnPassant(String color) {
 		ArrayList<Piece> pieces = getPieces(color);
 		for(int i = 0; i < pieces.size(); i++) {
@@ -105,6 +117,16 @@ public class Chess {
 		}
 	}
 	
+	/**
+	 * Does book keeping for each turn and tells the main method if it can continue to the
+	 * next turn or if it needs to re-do current turn.
+	 * @param move user input for the move they would like to make
+	 * @param color current color
+	 * @return boolean -- true if the input is valid and main can continue to the next turn,
+	 * false otherwise
+	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
+	 * @see IndexOutOfBoundsException
+	 */
 	public static boolean turn(String move, String color) {
 		if(move.equals("resign")) {
 			resign = true;
@@ -233,20 +255,39 @@ public class Chess {
 			else {
 				return false;
 			}
-		} catch (Exception e) {
+		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Bad Input\n");
 			return false;
 		}
 	}
 	
+	/**
+	 * Calls turn() method with proper color.
+	 * @param move user input for the move they would like to make
+	 * @return boolean -- true if the input is valid and main can continue to the next turn,
+	 * false otherwise
+	 */
 	public static boolean whiteTurn(String move) {
 		return turn(move, "White");
 	}
 	
+	/**
+	 * Calls turn() method with proper color.
+	 * @param move user input for the move they would like to make
+	 * @return boolean -- true if the input is valid and main can continue to the next turn,
+	 * false otherwise
+	 */
 	public static boolean blackTurn(String move) {
 		return turn(move, "Black");
 	}
 	
+	/**
+	 * Get's an arrayList of all remaining pieces left on
+	 * the board of a certain color.
+	 * @param color used in a check to ensure only that the method is only 
+	 * grabbing pieces of the correct color
+	 * @return ArrayList(Piece) -- list of all pieces of a certain color
+	 */
 	public static ArrayList<Piece> getPieces(String color){
 		ArrayList<Piece> output = new ArrayList<Piece>();
 		for(int i = 0; i < board.length; i++) {
@@ -259,6 +300,12 @@ public class Chess {
 		return output;
 	}
 	
+	/**
+	 * A method that returns true if the a king is currently under attack by a piece of a different color
+	 * @param board A 2-D array that represents the board
+	 * @param color the color of piece who is currently attacking a king
+	 * @return boolean -- true if the king of the opposite color is currently under attack, false otherwise
+	 */
 	public static boolean isInCheck(Piece[][] board, String color) {
 		String oppColor = color.equals("White") ? "Black" : "White";
 		ArrayList<Piece> pieces = getPieces(oppColor);
@@ -311,6 +358,12 @@ public class Chess {
 		return false;
 	}
 	
+	/**
+	 * A method that returns true if the a king is currently checkmated by the opposite player, 
+	 * that is the king is under attack and no move by any piece can take the king to safty
+	 * @param color the color of piece who is currently attacking a king
+	 * @return boolean -- true if the king is checkmated, false otherwise
+	 */
 	public static boolean isInCheckmate(String color) {
 		if(!isInCheck(board, color)) {
 			return false;
@@ -424,6 +477,11 @@ public class Chess {
 		return true;
 	}
 	
+	/**
+	 * Makes a copy of the current board, used for
+	 * checking for possible future configuration to find checkmate
+	 * @return A 2-D array representing a board
+	 */
 	public static Piece[][] duplicateBoard(){
 		Piece[][] output = new Piece[8][8];
 		for(int i = 0; i < board.length; i++) {
@@ -452,6 +510,10 @@ public class Chess {
 		return output;
 	}
 	
+	/**
+	 * Iterates over the entire board and prints to stdout either the 
+	 * piece at a give square or the color of the square
+	 */
 	public static void printBoard() {
 		for(int i = 8; i >= 1; i--) {
 			for(char j = 'a'; j < 'i'; j++) {
@@ -478,6 +540,9 @@ public class Chess {
 		System.out.println("\n");
 	}
 	
+	/**
+	 * Setups up the initial board for the start of the game.
+	 */
 	public static void initializeGame() {
 		board[getColumn("a")][getRow("a8")] = new Rook("Black", "a8");
 		board[getColumn("b")][getRow("b8")] = new Knight("Black", "b8");
@@ -505,6 +570,12 @@ public class Chess {
 		}
 	}
 	
+	/**
+	 * Takes the user input for the color and turns it into an int
+	 * for use for moves and such.
+	 * @param position gotten from used input
+	 * @return an int representing the column entered by the user
+	 */
 	public static int getColumn(String position) {
 		char col = position.charAt(0);
 		switch(col) {
@@ -528,6 +599,11 @@ public class Chess {
 		return -1;
 	}
 	
+	/**
+	 * Gets the proper row by taking user input and reducing by 1
+	 * @param position gotten from used input
+	 * @return an int representing the column entered by the user
+	 */
 	public static int getRow(String position) {
 		return Integer.parseInt(position.substring(1)) - 1;
 	}

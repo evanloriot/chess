@@ -2,6 +2,13 @@ package classes;
 
 import chess.Chess;
 
+/**
+ * The Piece class is the is the super for all other pieces. Provides the overall
+ * structure for all the sub classes.  
+ * @author Evan Loriot
+ * @author Joseph Klaszky
+ *
+ */
 public class Piece {
 	public String color;
 	public String position;
@@ -18,6 +25,13 @@ public class Piece {
 			return "w";
 		}
 	}
+	
+	/**
+	 * (Evan I'm not super sure what this does)
+	 * Seems to just check if the king is captured, if so it ends the game. 
+	 * @param board the current board
+	 * @param move -- the user's current command
+	 */
 	public void move(Piece[][] board, String move) {
 		String pos = move.substring(0,2);
 		String dest = move.substring(3,5);
