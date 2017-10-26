@@ -71,7 +71,7 @@ public class Chess {
 				valid = blackTurn(black);	
 			}
 			if(resign) {
-				winner = "Black wins";
+				winner = "White wins";
 				System.out.println(winner);
 				break;
 			}
@@ -95,6 +95,16 @@ public class Chess {
 		}
 	}
 	
+	public static void clearEnPassant(String color) {
+		ArrayList<Piece> pieces = getPieces(color);
+		for(int i = 0; i < pieces.size(); i++) {
+			Piece p = pieces.get(i);
+			if(p instanceof Pawn) {
+				((Pawn) p).canBePassed = false;
+			}
+		}
+	}
+	
 	public static boolean turn(String move, String color) {
 		if(move.equals("resign")) {
 			resign = true;
@@ -109,9 +119,14 @@ public class Chess {
 		try {
 			String pos = move.substring(0,2);
 			Piece position = board[getColumn(pos)][getRow(pos)];
+			if(position == null) {
+				System.out.println("Illegal move, try again\n");
+				return false;
+			}
 			if(position instanceof Rook) {
 				Rook r = (Rook) position;
 				if(r.isLegal(board, move, color, true)) {
+					clearEnPassant(color);
 					r.move(board, move);
 					String oppColor = color.equals("White") ? "Black" : "White";
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
@@ -129,6 +144,7 @@ public class Chess {
 			else if(position instanceof Knight) {
 				Knight r = (Knight) position;
 				if(r.isLegal(board, move, color, true)) {
+					clearEnPassant(color);
 					r.move(board, move);
 					String oppColor = color.equals("White") ? "Black" : "White";
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
@@ -146,6 +162,7 @@ public class Chess {
 			else if(position instanceof Bishop) {
 				Bishop r = (Bishop) position;
 				if(r.isLegal(board, move, color, true)) {
+					clearEnPassant(color);
 					r.move(board, move);
 					String oppColor = color.equals("White") ? "Black" : "White";
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
@@ -163,6 +180,7 @@ public class Chess {
 			else if(position instanceof Queen) {
 				Queen r = (Queen) position;
 				if(r.isLegal(board, move, color, true)) {
+					clearEnPassant(color);
 					r.move(board, move);
 					String oppColor = color.equals("White") ? "Black" : "White";
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
@@ -180,6 +198,7 @@ public class Chess {
 			else if(position instanceof King) {
 				King r = (King) position;
 				if(r.isLegal(board, move, color, true)) {
+					clearEnPassant(color);
 					r.move(board, move);
 					String oppColor = color.equals("White") ? "Black" : "White";
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {

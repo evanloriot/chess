@@ -13,6 +13,7 @@ public class Pawn extends Piece {
 		return super.toString() + "p";
 	}
 	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
+		boolean canBePassed = false;
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
 			if(canPrint) System.out.println("Illegal move, try again\n");
@@ -37,20 +38,6 @@ public class Pawn extends Piece {
 		}		
 		if(!hasMoved && destCol == posCol && Math.abs(destRow - posRow) == 2) {
 			legal = true;
-			Piece p1 = posCol > 'a' ? board[Chess.getColumn("" + (char)(destCol - 1) + destRow)][Chess.getRow(destination)] : null;
-			Piece p2 = posCol < 'h' ? board[Chess.getColumn("" + (char)(destCol + 1) + destRow)][Chess.getRow(destination)] : null;
-			if(p1 != null && p1 instanceof Pawn) {
-				Pawn p = (Pawn) p1;
-				if(!p.color.equals(this.color)) {
-					canBePassed = true;
-				}
-			}
-			else if(p2 != null && p2 instanceof Pawn) {
-				Pawn p = (Pawn) p2;
-				if(!p.color.equals(this.color)) {
-					canBePassed = true;
-				}
-			}
 			canBePassed = true;
 		}
 		else if(destCol != posCol && Math.abs(destCol - posCol) == 1) {
@@ -79,6 +66,10 @@ public class Pawn extends Piece {
 			}
 		}
 		if(legal) {
+			Chess.clearEnPassant(color);
+			if(canBePassed) {
+				this.canBePassed = true;
+			}
 			Chess.drawInitiated = true;
 			return true;
 		}
