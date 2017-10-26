@@ -2,6 +2,11 @@ package classes;
 
 import chess.Chess;
 
+/**
+ * The Rook class represents the rook piece. It can move/attack along its row or column.
+ * @author Evan Loriot
+ * @author Joseph Klaszky
+ */
 public class Rook extends Piece {
 	public Rook(String color, String position) {
 		super(color, position);
@@ -9,6 +14,18 @@ public class Rook extends Piece {
 	public String toString() {
 		return super.toString() + "R";
 	}
+	
+	/**
+	 * This method takes a look at the current board and the user's move to see if 
+	 * this would be a legal move.
+	 * @param board the current set up of the game board
+	 * @param command gotten from user input
+	 * @param color color of the current user's pieces
+	 * @param canPrint true if the game board needs to printed out again, false otherwise
+	 * @return true if the entered move is legal, false otherwise
+	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
+	 * @see IndexOutOfBoundsException
+	 */
 	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
@@ -85,7 +102,7 @@ public class Rook extends Piece {
 				if(canPrint) System.out.println("Illegal move, try again\n");
 				return false;
 			}
-		} catch (Exception e){
+		} catch (IndexOutOfBoundsException e){
 			System.out.println("Bad Input\n");
 			return false;
 		}

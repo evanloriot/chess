@@ -2,6 +2,12 @@ package classes;
 
 import chess.Chess;
 
+/**
+ * The Knight class represents the knight piece. It must move in an L shape
+ * -- two squares vertically and one square horizontally, or two squares horizontally and one square vertically
+ * @author Evan Loriot
+ * @author Joseph Klaszky
+ */
 public class Knight extends Piece {
 	public Knight(String color, String position) {
 		super(color, position);
@@ -9,6 +15,18 @@ public class Knight extends Piece {
 	public String toString() {
 		return super.toString() + "N";
 	}
+	
+	/**
+	 * This method takes a look at the current board and the user's move to see if 
+	 * this would be a legal move.
+	 * @param board the current set up of the game board
+	 * @param command gotten from user input
+	 * @param color color of the current user's pieces
+	 * @param canPrint true if the game board needs to printed out again, false otherwise
+	 * @return true if the entered move is legal, false otherwise
+	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
+	 * @see IndexOutOfBoundsException
+	 */
 	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
 		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
@@ -41,7 +59,7 @@ public class Knight extends Piece {
 				Chess.drawInitiated = true;
 			}
 			return legal;
-		} catch (Exception e) {
+		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Bad Input\n");
 			return false;
 		}
