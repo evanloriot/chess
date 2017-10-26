@@ -52,6 +52,7 @@ public class Chess {
 				else {
 					winner = "White wins";
 				}
+				System.out.println("Checkmate");
 				System.out.println(winner);
 				break;
 			}
@@ -81,6 +82,7 @@ public class Chess {
 				else {
 					winner = "White wins";
 				}
+				System.out.println("Checkmate");
 				System.out.println(winner);
 				break;
 			}

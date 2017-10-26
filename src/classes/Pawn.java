@@ -53,7 +53,7 @@ public class Pawn extends Piece {
 			}
 			canBePassed = true;
 		}
-		else if(destCol != posCol) {
+		else if(destCol != posCol && Math.abs(destCol - posCol) == 1) {
 			if(board[Chess.getColumn(destination)][Chess.getRow(position)] != null && board[Chess.getColumn(destination)][Chess.getRow(position)] instanceof Pawn) {
 				Pawn p = (Pawn)board[Chess.getColumn(destination)][Chess.getRow(position)];
 				if(p.canBePassed && !p.color.equals(this.color)) {
