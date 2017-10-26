@@ -98,111 +98,116 @@ public class Chess {
 				return true;
 			}
 		}
-		String pos = move.substring(0,2);
-		Piece position = board[getColumn(pos)][getRow(pos)];
-		if(position instanceof Rook) {
-			Rook r = (Rook) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
+		try {
+			String pos = move.substring(0,2);
+			Piece position = board[getColumn(pos)][getRow(pos)];
+			if(position instanceof Rook) {
+				Rook r = (Rook) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
 				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
+				else {
+					return false;
 				}
-				return true;
+			}
+			else if(position instanceof Knight) {
+				Knight r = (Knight) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Bishop) {
+				Bishop r = (Bishop) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Queen) {
+				Queen r = (Queen) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof King) {
+				King r = (King) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if(position instanceof Pawn) {
+				Pawn r = (Pawn) position;
+				if(r.isLegal(board, move, color, true)) {
+					r.move(board, move);
+					String oppColor = color.equals("White") ? "Black" : "White";
+					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
+						check = true;
+					}
+					if(isInCheckmate("White") || isInCheckmate("Black")) {
+						checkmate = true;
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			else {
 				return false;
 			}
-		}
-		else if(position instanceof Knight) {
-			Knight r = (Knight) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Bishop) {
-			Bishop r = (Bishop) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Queen) {
-			Queen r = (Queen) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof King) {
-			King r = (King) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if(position instanceof Pawn) {
-			Pawn r = (Pawn) position;
-			if(r.isLegal(board, move, color, true)) {
-				r.move(board, move);
-				String oppColor = color.equals("White") ? "Black" : "White";
-				if(isInCheck(board, oppColor) || isInCheck(board, color)) {
-					check = true;
-				}
-				if(isInCheckmate("White") || isInCheckmate("Black")) {
-					checkmate = true;
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
+		} catch (Exception e) {
+			System.out.println("Bad Input\n");
 			return false;
 		}
 	}
@@ -447,35 +452,35 @@ public class Chess {
 	}
 	
 	public static void initializeGame() {
-//		board[getColumn("a")][getRow("a8")] = new Rook("Black", "a8");
-//		board[getColumn("b")][getRow("b8")] = new Knight("Black", "b8");
-//		board[getColumn("c")][getRow("c8")] = new Bishop("Black", "c8");
-//		board[getColumn("d")][getRow("d8")] = new Queen("Black", "d8");
-//		board[getColumn("e")][getRow("e8")] = new King("Black", "e8");
-//		blackKing = (King) board[getColumn("e")][getRow("e8")];
-//		board[getColumn("f")][getRow("f8")] = new Bishop("Black", "f8");
-//		board[getColumn("g")][getRow("g8")] = new Knight("Black", "g8");
-//		board[getColumn("h")][getRow("h8")] = new Rook("Black", "h8");
-//		for(char i = 'a'; i < 'i'; i++) {
-//			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black", i + "7");
-//		}
-//		board[getColumn("a")][getRow("a1")] = new Rook("White", "a1");
-//		board[getColumn("b")][getRow("b1")] = new Knight("White", "b1");
-//		board[getColumn("c")][getRow("c1")] = new Bishop("White", "c1");
-//		board[getColumn("d")][getRow("d1")] = new Queen("White", "d1");
-//		board[getColumn("e")][getRow("e1")] = new King("White", "e1");
-//		whiteKing = (King) board[getColumn("e")][getRow("e1")];
-//		board[getColumn("f")][getRow("f1")] = new Bishop("White", "f1");
-//		board[getColumn("g")][getRow("g1")] = new Knight("White", "g1");
-//		board[getColumn("h")][getRow("h1")] = new Rook("White", "h1");
-//		for(char i = 'a'; i < 'i'; i++) {
-//			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White", i + "2");
-//		}
-		board[getColumn("e")][getRow("e2")] = new Queen("Black", "e2");
-		board[getColumn("f")][getRow("f3")] = new King("Black", "f3");
-		board[getColumn("d")][getRow("d1")] = new King("White", "d1");
-		blackKing = (King) board[getColumn("f")][getRow("f3")];
-		whiteKing = (King) board[getColumn("d")][getRow("d1")];
+		board[getColumn("a")][getRow("a8")] = new Rook("Black", "a8");
+		board[getColumn("b")][getRow("b8")] = new Knight("Black", "b8");
+		board[getColumn("c")][getRow("c8")] = new Bishop("Black", "c8");
+		board[getColumn("d")][getRow("d8")] = new Queen("Black", "d8");
+		board[getColumn("e")][getRow("e8")] = new King("Black", "e8");
+		blackKing = (King) board[getColumn("e")][getRow("e8")];
+		board[getColumn("f")][getRow("f8")] = new Bishop("Black", "f8");
+		board[getColumn("g")][getRow("g8")] = new Knight("Black", "g8");
+		board[getColumn("h")][getRow("h8")] = new Rook("Black", "h8");
+		for(char i = 'a'; i < 'i'; i++) {
+			board[getColumn("" + i)][getRow(i + "7")] = new Pawn("Black", i + "7");
+		}
+		board[getColumn("a")][getRow("a1")] = new Rook("White", "a1");
+		board[getColumn("b")][getRow("b1")] = new Knight("White", "b1");
+		board[getColumn("c")][getRow("c1")] = new Bishop("White", "c1");
+		board[getColumn("d")][getRow("d1")] = new Queen("White", "d1");
+		board[getColumn("e")][getRow("e1")] = new King("White", "e1");
+		whiteKing = (King) board[getColumn("e")][getRow("e1")];
+		board[getColumn("f")][getRow("f1")] = new Bishop("White", "f1");
+		board[getColumn("g")][getRow("g1")] = new Knight("White", "g1");
+		board[getColumn("h")][getRow("h1")] = new Rook("White", "h1");
+		for(char i = 'a'; i < 'i'; i++) {
+			board[getColumn("" + i)][getRow(i + "2")] = new Pawn("White", i + "2");
+		}
+//		board[getColumn("e")][getRow("e2")] = new Queen("Black", "e2");
+//		board[getColumn("f")][getRow("f3")] = new King("Black", "f3");
+//		board[getColumn("d")][getRow("d1")] = new King("White", "d1");
+//		blackKing = (King) board[getColumn("f")][getRow("f3")];
+//		whiteKing = (King) board[getColumn("d")][getRow("d1")];
 	}
 	
 	public static int getColumn(String position) {

@@ -18,12 +18,14 @@ public class Pawn extends Piece {
 			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
 		}
-		String position = command.substring(0,2);
-		String destination = command.substring(3,5);
-		if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
-			if(canPrint) System.out.println("Illegal move, try again\n");
-			return false;
-		}
+		try{
+			String position = command.substring(0,2);
+			String destination = command.substring(3,5);
+			if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(color)) {
+				if(canPrint) System.out.println("Illegal move, try again\n");
+				return false;
+			}
+
 		boolean legal = false;
 		char posCol = position.charAt(0);
 		int posRow = Integer.parseInt(position.substring(1, 2));
@@ -32,7 +34,7 @@ public class Pawn extends Piece {
 		if(posCol == destCol && posRow == destRow) {
 			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
-		}
+		}		
 		if(!hasMoved && destCol == posCol && Math.abs(destRow - posRow) == 2) {
 			legal = true;
 			Piece p1 = posCol > 'a' ? board[Chess.getColumn("" + (char)(destCol - 1) + destRow)][Chess.getRow(destination)] : null;
@@ -68,7 +70,13 @@ public class Pawn extends Piece {
 			}
 		}
 		else if(destCol == posCol && (this.color.equals("White") && destRow > posRow && Math.abs(destRow - posRow) <= 1) || (this.color.equals("Black") && destRow < posRow && Math.abs(destRow - posRow) <= 1)) {
-			legal = true;
+			if((this.color.equals("White") && destRow > posRow && Math.abs(destRow - posRow) <= 1) || (this.color.equals("Black") && destRow < posRow && Math.abs(destRow - posRow) <= 1)) {
+				if(board[Chess.getColumn(destination)][Chess.getRow(destination)] != null && !board[Chess.getColumn(destination)][Chess.getRow(destination)].color.equals(this.color)){
+					legal = false;
+				} else {
+					legal = true;
+				}
+			}
 		}
 		if(legal) {
 			Chess.drawInitiated = true;
@@ -76,6 +84,10 @@ public class Pawn extends Piece {
 		}
 		else {
 			if(canPrint) System.out.println("Illegal move, try again\n");
+			return false;
+		}
+		} catch(Exception e){
+			System.out.println("Bad Input\n");
 			return false;
 		}
 	}
