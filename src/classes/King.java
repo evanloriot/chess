@@ -108,7 +108,13 @@ public class King extends Piece {
 				return true;
 			}
 			else {
-				if(Math.abs(posRow - destRow) == 1 || Math.abs(posCol - destCol) == 1) {
+				if(Math.abs(posRow - destRow) == 1 && Math.abs(posCol - destCol) == 1) {
+					return true;
+				}
+				else if(Math.abs(posRow - destRow) == 1 && Math.abs(posCol - destCol) == 0) {
+					return true;
+				}
+				else if(Math.abs(posRow - destRow) == 0 && Math.abs(posCol - destCol) == 1) {
 					return true;
 				}
 				else {
