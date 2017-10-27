@@ -49,7 +49,6 @@ public class Pawn extends Piece {
 	 */
 	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
 		boolean canBePassed = false;
-		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
 			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;
@@ -105,7 +104,9 @@ public class Pawn extends Piece {
 			if(canBePassed) {
 				this.canBePassed = true;
 			}
-			Chess.drawInitiated = true;
+			if(legal && command.length() == 11 && command.substring(6).equals("draw?")) {
+				Chess.drawInitiated = true;
+			}
 			return true;
 		}
 		else {

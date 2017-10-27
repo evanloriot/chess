@@ -37,7 +37,6 @@ public class Rook extends Piece {
 	 * @see IndexOutOfBoundsException
 	 */
 	public boolean isLegal(Piece[][] board, String command, String color, boolean canPrint) {
-		Chess.drawInitiated = false;
 		if(!color.equals(this.color)) {
 			if(canPrint) System.out.println("Illegal move, try again\n");
 			return false;

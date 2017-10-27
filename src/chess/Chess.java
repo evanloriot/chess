@@ -166,11 +166,18 @@ public class Chess {
 			resign = true;
 			return true;
 		}
-		else if(move.equals("draw")) {
-			if(drawInitiated) {
+		else if(drawInitiated) {
+			if(move.equals("draw")) {
 				draw = true;
 				return true;
 			}
+			else {
+				drawInitiated = false;
+			}
+		}
+		else if(move.equals("draw") || drawInitiated != false) {
+			System.out.println("Illegal move, try again\n");
+			return false;
 		}
 		try {
 			String pos = move.substring(0,2);
