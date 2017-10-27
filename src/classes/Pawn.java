@@ -125,7 +125,7 @@ public class Pawn extends Piece {
 	 */
 	public void move(Piece[][] board, String move) {
 		super.move(board, move);
-		if(color.equals("White") && move.charAt(4) == '8' || color.equals("Black") && move.charAt(4) == '1' && move.length() == 7) {
+		if(color.equals("White") && move.charAt(4) == '8' || color.equals("Black") && move.charAt(4) == '1') {
 			String position = move.substring(3,5);
 			String color = board[Chess.getColumn(position)][Chess.getRow(position)].color;
 			if(move.length() == 7) {
@@ -139,7 +139,11 @@ public class Pawn extends Piece {
 						board[Chess.getColumn(position)][Chess.getRow(position)] = new Bishop(color, position);
 					case 'Q':
 						board[Chess.getColumn(position)][Chess.getRow(position)] = new Queen(color, position);
-				}
+					default:
+						board[Chess.getColumn(position)][Chess.getRow(position)] = new Queen(color, position);
+				} 
+			} else {
+				board[Chess.getColumn(position)][Chess.getRow(position)] = new Queen(color, position);
 			}
 			
 		}

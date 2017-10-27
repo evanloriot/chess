@@ -395,7 +395,7 @@ public class Chess {
 	
 	/**
 	 * A method that returns true if the a king is currently checkmated by the opposite player, 
-	 * that is the king is under attack and no move by any piece can take the king to safty
+	 * that is the king is under attack and no move by any piece can take the king to safety
 	 * @param color  the color of the king to check for checkmate on
 	 * @return boolean -- true if the king is checkmated, false otherwise
 	 */
