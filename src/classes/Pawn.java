@@ -9,12 +9,29 @@ import chess.Chess;
  * @author Joseph Klaszky
  */
 public class Pawn extends Piece {
+	/**
+	 * variable designating if a pawn is performing an en passant move
+	 */
 	public boolean enpassant = false;
+	
+	/**
+	 * variable designating if a pawn can be passed en passant
+	 */
 	public boolean canBePassed = false;
 	
+	/**
+	 * Constructor
+	 * @param color  color of piece to be initialized
+	 * @param position  position of piece on board to be initialized
+	 */
 	public Pawn(String color, String position) {
 		super(color, position);
 	}
+	
+	/**
+	 * Method to return string representation of piece.
+	 * @return String representation of piece
+	 */
 	public String toString() {
 		return super.toString() + "p";
 	}
@@ -25,7 +42,7 @@ public class Pawn extends Piece {
 	 * @param board the current set up of the game board
 	 * @param command gotten from user input
 	 * @param color color of the current user's pieces
-	 * @param canPrint true if the game board needs to printed out again, false otherwise
+	 * @param canPrint true if illegal moves are allowed to be printed
 	 * @return true if the entered move is legal, false otherwise
 	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
 	 * @see IndexOutOfBoundsException
@@ -100,6 +117,12 @@ public class Pawn extends Piece {
 			return false;
 		}
 	}
+	
+	/**
+	 * Performs superclass move and performs promotion or en passant if applicable
+	 * @param board  Piece array of current chessboard
+	 * @param move  move input by player
+	 */
 	public void move(Piece[][] board, String move) {
 		super.move(board, move);
 		if(color.equals("White") && move.charAt(4) == '8' || color.equals("Black") && move.charAt(4) == '1' && move.length() == 7) {

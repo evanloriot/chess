@@ -9,9 +9,19 @@ import chess.Chess;
  * @author Joseph Klaszky
  */
 public class Knight extends Piece {
+	/**
+	 * Constructor
+	 * @param color  color of piece to be initialized
+	 * @param position  position of piece to be initialized on board
+	 */
 	public Knight(String color, String position) {
 		super(color, position);
 	}
+	
+	/**
+	 * Method to return a string representation of piece
+	 * @return string representation of piece
+	 */
 	public String toString() {
 		return super.toString() + "N";
 	}
@@ -22,7 +32,7 @@ public class Knight extends Piece {
 	 * @param board the current set up of the game board
 	 * @param command gotten from user input
 	 * @param color color of the current user's pieces
-	 * @param canPrint true if the game board needs to printed out again, false otherwise
+	 * @param canPrint true if illegal moves are allowed to be printed
 	 * @return true if the entered move is legal, false otherwise
 	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
 	 * @see IndexOutOfBoundsException
