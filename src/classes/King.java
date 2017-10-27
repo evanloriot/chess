@@ -8,9 +8,19 @@ import chess.Chess;
  * @author Joseph Klaszky
  */
 public class King extends Piece {
+	/**
+	 * Constructor
+	 * @param color  color of piece to be initialized
+	 * @param position  position on board of piece to be initialized
+	 */
 	public King(String color, String position) {
 		super(color, position);
 	}
+	
+	/**
+	 * Method to return String representation of Piece.
+	 * @return String -- string representation of Piece
+	 */
 	public String toString() {
 		return super.toString() + "K";
 	}
@@ -21,7 +31,7 @@ public class King extends Piece {
 	 * @param board the current set up of the game board
 	 * @param command gotten from user input
 	 * @param color color of the current user's pieces
-	 * @param canPrint true if the game board needs to printed out again, false otherwise
+	 * @param canPrint true if illegal moves are allowed to be printed
 	 * @return true if the entered move is legal, false otherwise
 	 * @exception IndexOutOfBoundsException -- if the user enters badly formatted input.
 	 * @see IndexOutOfBoundsException
@@ -112,6 +122,12 @@ public class King extends Piece {
 			return false;
 		}
 	}
+	
+	/**
+	 * Performs superclass move and castling if applicable
+	 * @param board  current setup of chess board
+	 * @param move  move to be done
+	 */
 	public void move(Piece[][] board, String move) {
 		super.move(board, move);
 		String position = move.substring(0,2);

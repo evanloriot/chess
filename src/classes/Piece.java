@@ -10,13 +10,35 @@ import chess.Chess;
  *
  */
 public class Piece {
+	/**
+	 * color of the piece
+	 */
 	public String color;
+	
+	/**
+	 * position of the piece on the chessboard
+	 */
 	public String position;
+	
+	/**
+	 * variable true if piece has moved this game, false otherwise 
+	 */
 	public boolean hasMoved = false;
+	
+	/**
+	 * Constructor
+	 * @param color  color of the piece to be initialized
+	 * @param position  position of the piece to be initialized
+	 */
 	public Piece(String color, String position) {
 		this.color = color;
 		this.position = position;
 	}
+	
+	/**
+	 * Method to return a string representation of the piece
+	 * @return string representation of piece
+	 */
 	public String toString() {
 		if(color.equals("Black")) {
 			return "b";
@@ -27,8 +49,7 @@ public class Piece {
 	}
 	
 	/**
-	 * (Evan I'm not super sure what this does)
-	 * Seems to just check if the king is captured, if so it ends the game. 
+	 * Performs piece movement, updates piece properties, performs captures, and sets winner if King is taken
 	 * @param board the current board
 	 * @param move -- the user's current command
 	 */

@@ -20,16 +20,55 @@ import classes.Rook;
  * @author Joseph Klaszky
  */
 public class Chess {
+	/**
+	 * Piece array of the current official board for the game
+	 */
 	public static Piece[][] board;
+	
+	/**
+	 * true if either king is in check, false otherwise
+	 */
 	public static boolean check;
+	
+	/**
+	 * variable true when either king is in checkmate, false otherwise
+	 */
 	public static boolean checkmate;
+	
+	/**
+	 * variable true if one player initiates a draw, false otherwise
+	 */
 	public static boolean drawInitiated;
+	
+	/**
+	 * variable true if player has confirmed a draw initiation, false otherwise
+	 */
 	public static boolean draw;
+	
+	/**
+	 * variable true if either player has resigned
+	 */
 	public static boolean resign;
+	
+	/**
+	 * variable containing the winning text to output at the end of the game, either: Black wins or White wins
+	 */
 	public static String winner;
+	
+	/**
+	 * pointer to black king
+	 */
 	public static King blackKing;
+	
+	/**
+	 * pointer to white king
+	 */
 	public static King whiteKing;
 	
+	/**
+	 * Main game loop. 
+	 * @param args  
+	 */
 	public static void main(String[] args) {
 		board = new Piece[8][8];
 		initializeGame();
@@ -301,10 +340,11 @@ public class Chess {
 	}
 	
 	/**
-	 * A method that returns true if the a king is currently under attack by a piece of a different color
+	 * A method that returns true if the a king is currently under attack by a piece of a different color by checking all the opposing pieces
+	 * ability to take the targeted king
 	 * @param board A 2-D array that represents the board
-	 * @param color the color of piece who is currently attacking a king
-	 * @return boolean -- true if the king of the opposite color is currently under attack, false otherwise
+	 * @param color  the color of the king to check whether it is in check
+	 * @return boolean -- true if the king of the color is currently under attack, false otherwise
 	 */
 	public static boolean isInCheck(Piece[][] board, String color) {
 		String oppColor = color.equals("White") ? "Black" : "White";
@@ -361,7 +401,7 @@ public class Chess {
 	/**
 	 * A method that returns true if the a king is currently checkmated by the opposite player, 
 	 * that is the king is under attack and no move by any piece can take the king to safty
-	 * @param color the color of piece who is currently attacking a king
+	 * @param color  the color of the king to check for checkmate on
 	 * @return boolean -- true if the king is checkmated, false otherwise
 	 */
 	public static boolean isInCheckmate(String color) {
@@ -573,7 +613,7 @@ public class Chess {
 	/**
 	 * Takes the user input for the color and turns it into an int
 	 * for use for moves and such.
-	 * @param position gotten from used input
+	 * @param position gotten from user input
 	 * @return an int representing the column entered by the user
 	 */
 	public static int getColumn(String position) {
