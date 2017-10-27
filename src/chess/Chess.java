@@ -195,7 +195,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
@@ -213,7 +213,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
@@ -231,7 +231,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
@@ -249,7 +249,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
@@ -267,7 +267,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
@@ -284,7 +284,7 @@ public class Chess {
 					if(isInCheck(board, oppColor) || isInCheck(board, color)) {
 						check = true;
 					}
-					if(isInCheckmate("White") || isInCheckmate("Black")) {
+					if(isInCheckmate(color)) {
 						checkmate = true;
 					}
 					return true;
