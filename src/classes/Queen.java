@@ -105,7 +105,7 @@ public class Queen extends Piece {
 						col--;
 					}
 				}
-				else if(destCol < posCol && destRow > posCol) {
+				else if(destCol < posCol && destRow > posRow) {
 					int row = posRow + 1;
 					char col = (char) (posCol - 1);
 					while(row < destRow && col > destCol) {
@@ -116,7 +116,7 @@ public class Queen extends Piece {
 						col--;
 					}
 				}
-				else if(posCol != destCol && posRow == destCol) {
+				else if(posCol != destCol && posRow == destRow) {
 					if(destCol > posCol) {
 						for(char i = (char)(posCol + 1); i < destCol; i++) {
 							if(board[Chess.getColumn("" + i + posRow)][Chess.getRow("" + i + posRow)] != null) {

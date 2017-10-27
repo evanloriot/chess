@@ -60,6 +60,8 @@ public class Chess {
 	 */
 	public static King blackKing;
 	
+	public static boolean gameOver = false;
+	
 	/**
 	 * pointer to white king
 	 */
@@ -82,12 +84,16 @@ public class Chess {
 				System.out.println("");
 				valid = whiteTurn(white);	
 			}
+			if(gameOver) {
+				System.out.println(winner);
+				break;
+			}
 			if(resign) {
 				winner = "Black wins";
 				System.out.println(winner);
 				break;
 			}
-			else if(checkmate) {
+			else if(checkmate && isInCheckmate("Black")) {
 				if(isInCheckmate("White")) {
 					winner = "Black wins";
 				}
@@ -101,7 +107,7 @@ public class Chess {
 			else if(check) {
 				System.out.println("Check\n");
 			}
-			else if(draw) {
+			if(draw) {
 				break;
 			}
 			printBoard();
@@ -112,12 +118,16 @@ public class Chess {
 				System.out.println("");
 				valid = blackTurn(black);	
 			}
+			if(gameOver) {
+				System.out.println(winner);
+				break;
+			}
 			if(resign) {
 				winner = "White wins";
 				System.out.println(winner);
 				break;
 			}
-			else if(checkmate) {
+			else if(checkmate && isInCheckmate("White")) {
 				if(isInCheckmate("White")) {
 					winner = "Black wins";
 				}
@@ -131,7 +141,7 @@ public class Chess {
 			else if(check) {
 				System.out.println("Check\n");
 			}
-			else if(draw) {
+			if(draw) {
 				break;
 			}
 		}
