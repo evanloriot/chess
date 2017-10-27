@@ -64,11 +64,6 @@ public class Chess {
 	 * pointer to white king
 	 */
 	public static King whiteKing;
-	
-	/**
-	 * Main game loop. 
-	 * @param args  
-	 */
 	public static void main(String[] args) {
 		board = new Piece[8][8];
 		initializeGame();
