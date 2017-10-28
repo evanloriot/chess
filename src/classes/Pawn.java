@@ -151,11 +151,6 @@ public class Pawn extends Piece {
 			} else {
 				board[Chess.getColumn(position)][Chess.getRow(position)] = new Queen(color, position);
 			}
-			if(color.equals("White")){
-				Chess.isInCheckmate("Black");
-			} else {
-				Chess.isInCheckmate("White");
-			}
 		}
 		if(enpassant) {
 			board[Chess.getColumn(move.substring(3,5))][Chess.getRow(move.substring(0,2))] = null;
