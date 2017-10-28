@@ -93,7 +93,7 @@ public class Chess {
 				System.out.println(winner);
 				break;
 			}
-			else if(checkmate && isInCheckmate("Black")) {
+			else if(isInCheckmate("Black")) {
 				if(isInCheckmate("White")) {
 					winner = "Black wins";
 				}
@@ -127,7 +127,7 @@ public class Chess {
 				System.out.println(winner);
 				break;
 			}
-			else if(checkmate && isInCheckmate("White")) {
+			else if(isInCheckmate("White")) {
 				if(isInCheckmate("White")) {
 					winner = "Black wins";
 				}
@@ -152,7 +152,7 @@ public class Chess {
 	 * @param color used so that only one color's flags are flipped
 	 */
 	public static void clearEnPassant(String color) {
-		ArrayList<Piece> pieces = getPieces(color);
+		ArrayList<Piece> pieces = getPieces(board, color);
 		for(int i = 0; i < pieces.size(); i++) {
 			Piece p = pieces.get(i);
 			if(p instanceof Pawn) {
@@ -339,7 +339,7 @@ public class Chess {
 	 * grabbing pieces of the correct color
 	 * @return ArrayList(Piece) -- list of all pieces of a certain color
 	 */
-	public static ArrayList<Piece> getPieces(String color){
+	public static ArrayList<Piece> getPieces(Piece[][] board, String color){
 		ArrayList<Piece> output = new ArrayList<Piece>();
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
@@ -351,6 +351,16 @@ public class Chess {
 		return output;
 	}
 	
+	public static King getKing(Piece[][] board, String color) {
+		ArrayList<Piece> pieces = getPieces(board, color);
+		for(int i = 0; i < pieces.size(); i++) {
+			if(pieces.get(i) instanceof King) {
+				return (King) pieces.get(i);
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * A method that returns true if the a king is currently under attack by a piece of a different color by checking all the opposing pieces
 	 * ability to take the targeted king
@@ -360,8 +370,8 @@ public class Chess {
 	 */
 	public static boolean isInCheck(Piece[][] board, String color) {
 		String oppColor = color.equals("White") ? "Black" : "White";
-		ArrayList<Piece> pieces = getPieces(oppColor);
-		King k = color.equals("White") ? whiteKing : blackKing;
+		ArrayList<Piece> pieces = getPieces(board, oppColor);
+		King k = getKing(board, color);
 		for(int i = 0; i < pieces.size(); i++) {
 			Piece p = pieces.get(i);
 			if(p instanceof Rook) {
@@ -420,7 +430,7 @@ public class Chess {
 		if(!isInCheck(board, color)) {
 			return false;
 		}
-		ArrayList<Piece> pieces = getPieces(color);
+		ArrayList<Piece> pieces = getPieces(board, color);
 		for(int i = 0; i < pieces.size(); i++) {
 			Piece p = pieces.get(i);
 			if(p instanceof Rook) {
