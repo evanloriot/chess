@@ -60,12 +60,16 @@ public class Chess {
 	 */
 	public static King blackKing;
 	
+	/**
+	 * Indicates whether or not the game is finished (king is taken).
+	 */
 	public static boolean gameOver = false;
 	
 	/**
 	 * pointer to white king
 	 */
 	public static King whiteKing;
+	
 	public static void main(String[] args) {
 		board = new Piece[8][8];
 		initializeGame();
@@ -335,6 +339,7 @@ public class Chess {
 	/**
 	 * Get's an arrayList of all remaining pieces left on
 	 * the board of a certain color.
+	 * @param board  current implementation of board to be checked against
 	 * @param color used in a check to ensure only that the method is only 
 	 * grabbing pieces of the correct color
 	 * @return ArrayList(Piece) -- list of all pieces of a certain color
@@ -351,6 +356,12 @@ public class Chess {
 		return output;
 	}
 	
+	/**
+	 * Get king from the method parameter board instead of relying on class variable king. 
+	 * @param board  implementation of board to find king on
+	 * @param color  color of king to find
+	 * @return  King -- return king of prescribed color
+	 */
 	public static King getKing(Piece[][] board, String color) {
 		ArrayList<Piece> pieces = getPieces(board, color);
 		for(int i = 0; i < pieces.size(); i++) {
